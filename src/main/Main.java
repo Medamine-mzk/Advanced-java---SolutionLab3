@@ -1,49 +1,30 @@
+package main;
+
 import models.Product;
+import models.Store;
 
 import java.util.Date;
-
 public class Main {
     public static void main(String[] args) {
+        Product p1 = new Product(1021, "Milk", "Delight", 0.700);
+        Product p2 = new Product(2510, "Yogurt", "Vitalait", 1.200);
+        Product p3 = new Product(3250, "Tomato", "Sicam", 0.900);
 
-        // 1) Create an empty product
-        Product emptyProduct = new Product();
-        emptyProduct.display();
+        Store store1 = new Store(1, "Downtown", 50);
+        Store store2 = new Store(2, "Uptown", 50);
 
-        // 2) Create new products with specified characteristics
-        Product milk = new Product(1021, "Milk", "Delight", 0.0);
-        Product yogurt = new Product(2510, "Yogurt", "Vitalait", 0.0);
-        Product tomato = new Product(3250, "Tomato", "Sicam", 1.200);
+        store1.addProduct(p1);
+        store1.addProduct(p2);
+        store2.addProduct(p2);
+        store2.addProduct(p3);
 
-        // Display initial product details
-        milk.display();
-        yogurt.display();
-        tomato.display();
+        System.out.println("Store 1 has product p1: " + store1.searchProduct(p1));
+        System.out.println("Store 2 has product p1: " + store2.searchProduct(p1));
 
-        // 4) Assign a price to the milk product and display it
-        milk.setPrice(0.700);
-        milk.display();
+        store1.removeProduct(p1);
+        System.out.println("After removal, Store 1 has product p1: " + store1.searchProduct(p1));
 
-        // 5) Complete the missing information for each product
-        yogurt.setPrice(0.500);
-        tomato.setPrice(1.200);
-
-        // 6) Display modified products
-        yogurt.display();
-        tomato.display();
-
-        // 7) Display products using the toString() method
-        System.out.println(milk);
-        System.out.println(yogurt);
-        System.out.println(tomato);
-
-        // 8) Add an expiration date attribute and assign dates to existing products
-        milk.setExpirationDate(new Date(2024, 11, 20));  // Example date
-        yogurt.setExpirationDate(new Date(2024, 11, 25));  // Example date
-        tomato.setExpirationDate(new Date(2025, 1, 15));  // Example date
-
-        // Display products with expiration dates
-        milk.display();
-        yogurt.display();
-        tomato.display();
+        Store largerStore = Store.compareStores(store1, store2);
+        System.out.println("The store with more products is: " + largerStore.getId());
     }
 }

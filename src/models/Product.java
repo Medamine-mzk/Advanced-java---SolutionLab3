@@ -1,3 +1,5 @@
+package models;
+
 import java.util.Date;
 
 public class Product {
@@ -67,7 +69,7 @@ public class Product {
 
     // 3) Method to display product details
     public void display() {
-        System.out.println("Product Details:");
+        System.out.println("models.Product Details:");
         System.out.println("ID: " + id);
         System.out.println("Label: " + label);
         System.out.println("Brand: " + brand);
@@ -78,6 +80,19 @@ public class Product {
             System.out.println("Expiration Date: Not Set");
         }
         System.out.println("------------------------");
+    }
+    // Compare method (single parameter)
+    public boolean compare(Product other) {
+        return this.id == other.id &&
+                this.label.equals(other.label) &&
+                this.price == other.price;
+    }
+
+    // Compare method (two parameters)
+    public static boolean compare(Product product1, Product product2) {
+        return product1.id == product2.id &&
+                product1.label.equals(product2.label) &&
+                product1.price == product2.price;
     }
 
 }
